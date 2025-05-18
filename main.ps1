@@ -1,4 +1,7 @@
 #Requires -Version 5.1
+
+. .\Invoke-ServerConnectivityChecks.ps1
+
 # SCCM Connectivity Checker v1.1
 #------------------------------------------------------------------------------------
 #region GUI Creation and Event Handling (Frontend)
@@ -104,7 +107,8 @@ Function Update-ResultsDisplay {
 }
 
 # Event Handler for the Run Button
-$runButton.Add_Click({
+$runButton.Add_Click(
+    {
         $textBoxResults.Clear()
         $statusLabel.Text = "Running checks... Please wait."
         $statusLabel.ForeColor = [System.Drawing.Color]::OrangeRed
@@ -146,7 +150,8 @@ $runButton.Add_Click({
         $statusLabel.ForeColor = [System.Drawing.Color]::DarkGreen
         $mainForm.Cursor = [System.Windows.Forms.Cursors]::Default
         $runButton.Enabled = $true
-    })
+    }
+)
 
 # Show the form
 $mainForm.ShowDialog() | Out-Null
