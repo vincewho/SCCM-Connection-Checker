@@ -56,11 +56,11 @@ $textBoxDB.Size = New-Object System.Drawing.Size(410, 25)
 $mainForm.Controls.Add($textBoxDB)
 
 # Results Textbox
-$Global:textBoxResults = New-Object System.Windows.Forms.TextBox # Global
+$Global:textBoxResults = New-Object System.Windows.Forms.RichTextBox # Global
 $textBoxResults.Location = New-Object System.Drawing.Point(20, 180)
 $textBoxResults.Size = New-Object System.Drawing.Size(590, 330) # Adjusted size
 $textBoxResults.Multiline = $true
-$textBoxResults.ScrollBars = "Vertical"
+$textBoxResults.ScrollBars = [System.Windows.Forms.RichTextBoxScrollBars]::Vertical # Enum is slightly different
 $textBoxResults.ReadOnly = $true
 $textBoxResults.Font = New-Object System.Drawing.Font("Consolas", 9.5)
 $mainForm.Controls.Add($textBoxResults)
