@@ -8,7 +8,7 @@
     and performs basic connectivity tests like ping and port checks.
     The connectivity logic is designed to be more independent of the GUI.
 .NOTES
-    Author: Gemini
+    Author: Vincent Li
     Version: 1.1
     Ensure PowerShell execution policy allows running scripts.
     Run with appropriate permissions if checking remote services or WMI.
