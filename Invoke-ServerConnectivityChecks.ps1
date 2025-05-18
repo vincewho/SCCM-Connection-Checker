@@ -47,27 +47,27 @@ Function Invoke-ServerConnectivityChecks {
         return $results
     }
 
-    Add-CheckResult -Message "--- Starting checks for $ServerType: $ServerName ---" -Status "Header" -IsHeader
+    Add-CheckResult -Message "--- Starting checks for $ServerType - $ServerName ---" -Status "Header" -IsHeader
 
     # 1. DNS Resolution Check
     Add-CheckResult -Message "Performing DNS Resolution for $ServerName..." -Status "SubHeader"
     try {
         $ipAddress = [System.Net.Dns]::GetHostAddresses($ServerName)[0].IPAddressToString
-        Add-CheckResult -Message "DNS Resolution for $ServerName: SUCCESS ($ipAddress)" -Status "Success"
+        Add-CheckResult -Message "DNS Resolution for $ServerName - SUCCESS ($ipAddress)" -Status "Success"
     }
     catch {
-        Add-CheckResult -Message "DNS Resolution for $ServerName: FAILED ($($_.Exception.Message))" -Status "Failure"
-        Add-CheckResult -Message "--- Ending checks for $ServerType: $ServerName (DNS resolution failed) ---" -Status "Header" -IsHeader
+        Add-CheckResult -Message "DNS Resolution for $ServerName - FAILED ($($_.Exception.Message))" -Status "Failure"
+        Add-CheckResult -Message "--- Ending checks for $ServerType - $ServerName (DNS resolution failed) ---" -Status "Header" -IsHeader
         return $results # Stop further checks if DNS fails
     }
 
     # 2. Ping Test
     Add-CheckResult -Message "Pinging $ServerName..." -Status "SubHeader"
     if (Test-Connection -ComputerName $ServerName -Count 2 -Quiet -ErrorAction SilentlyContinue) {
-        Add-CheckResult -Message "Ping $ServerName: SUCCESS" -Status "Success"
+        Add-CheckResult -Message "Ping $ServerName - SUCCESS" -Status "Success"
     }
     else {
-        Add-CheckResult -Message "Ping $ServerName: FAILED" -Status "Failure"
+        Add-CheckResult -Message "Ping $ServerName - FAILED" -Status "Failure"
     }
 
     # 3. Port Checks
